@@ -1,0 +1,55 @@
+ 
+      <!-- Fixed navbar --> 
+      <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand artblue artlogo" href="javascript:;"><span>这是放LOGO标题的地方</span> 这是小标题</a>
+            </div>
+        
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:;" class="artUserName"></a></li> 
+                <li><a href="javascript:;"  class="artblue artSignOut" onclick="goLogOut()">退出</a></li>
+                <li><a href="#" class="artblue">修改密码</a></li> 
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </div>
+      </div>
+      <script type="text/javascript">
+        
+        function goLogOut(){ 
+          //登录提交 
+          $.ajax({
+              type : "POST",
+              url : GLOBAL_CONFIG.apiFull.logout,
+              dataType : "json",
+              data :{},
+              // data : {
+              //   'name':$('#uname'),
+              //   'pwd':$('#pwd'),
+              // },
+              success : function(result) {
+                  console.log(result);//打印服务端返回的数据(调试用)
+                  if (result.code == 200) {
+                    $.cookie('name',null);
+                    window.location.href="./login.html";
+                  }
+              },
+              error : function(){
+                alert("异常！");
+              },
+          }); 
+        }
+        $(function(){
+          if($.cookie('name')){
+            $('.artUserName').html('您好, '+ $.cookie('name'));
+          }else{
+            $('.artUserName').html('您好, '+ $.cookie('name'));
+          }
+         
+        });
+      </script>

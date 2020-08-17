@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	 <!-- 编码格式 -->
+	 <meta charset="UTF-8">
+	 <title>项目标题</title>
+	 <!-- 作者 -->
+	 <meta name="author" content="author">
+	 <!-- 网页描述 -->
+	 <meta name="description" content="hello">
+	 <!-- 关键字使用","分隔 -->
+	 <meta name="keywords" content="a,b,c">
+	 <!-- 禁止浏览器从本地机的缓存中调阅页面内容 -->
+	 <meta http-equiv="Pragma" content="no-cache">
+	 <!-- 用来防止别人在框架里调用你的页面 -->
+	 <meta http-equiv="Window-target" content="_top">
+	 <!-- content的参数有all，none，index，noindex，follow，nofollow，默认是all -->
+	 <meta name="robots" content="none">
+	 <!-- 收藏图标 -->
+	 <link rel="Shortcut Icon" href="favicon.ico" rel="external nofollow" >
+	 <link rel="shortcut icon" href="./assets/img/ico.png">
+	 <!-- 网页不会被缓存 -->
+	 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+	 <!-- 解决部分兼容性问题，如果安装了GCF，则使用GCF来渲染页面，如果未安装GCF，则使用最高版本的IE内核进行渲染。 -->
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	 <!-- 页面按原比例显示 -->
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/plugins/bootstrap/css/bootstrap-table.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="./assets/plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Bootstrap treeview -->
+    <link href="./assets/plugins/bootstrap/treeview/bootstrap-treeview.min.css" rel="stylesheet">
+    <!-- Bootstrap fileinput -->
+    <link href="./assets/plugins/bootstrap/fileinput/fileinput.css" rel="stylesheet">
+    <link href="./assets/plugins/bootstrap/fileinput/themes/explorer-fas/theme.css" rel="stylesheet">
+    <!-- jquery select -->
+    <link href="./assets/plugins/jquery/select/css/select2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./assets/css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="./assets/plugins/html5shiv.js"></script>
+      <script src="./assets/plugins/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+		<div class="navbar-box"></div>
+		<div class="container">
+			<div class="row">
+				<div class="sidebar-box col-sm-2"></div>
+				<div class="container-box col-sm-10"></div>
+			</div>
+		</div> <!-- /container -->
+    </div> 
+
+    <div id="footer">
+      <div class="container">
+        <center class="text-muted credit">这是底部信息</center>
+      </div>
+    </div>
+	
+<div class="alert alert-success alert-dismissible fade hide in">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>成功提示</strong>
+</div>
+<div class="alert alert-info  alert-dismissible fade hide in">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>信息提示</strong>
+</div>
+<div class="alert alert-warning  alert-dismissible fade hide in">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>警告提示</strong> 
+</div>
+<div class="alert alert-danger  alert-dismissible fade hide in">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>危险提示</strong> 
+</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./assets/plugins/jquery/jquery1.10.2.js"></script>
+    <script src="./assets/plugins/jquery/jquery.cookie.js"></script>
+    <script src="./assets/plugins/jquery/jquery.validate.min.js"></script>
+    <script src="./assets/plugins/qs.min.js"></script>
+    <script src="./assets/plugins/jquery/messages_zh.js"></script>
+    <script src="./assets/plugins/jquery/jquery.nicescroll.min.js"></script>
+    <script src="./assets/plugins/jquery/select/js/select2.min.js"></script>
+    <script src="./assets/plugins/jquery/select/js/zh-CN.js"></script>
+    <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./assets/plugins/bootstrap/js/bootstrap-table.min.js"></script>
+    <script src="./assets/plugins/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="./assets/plugins/bootstrap/treeview/bootstrap-treeview.min.js"></script>
+    <script src="./assets/plugins/bootstrap/fileinput/fileinput.js"></script>
+    <script src="./assets/plugins/bootstrap/fileinput/themes/explorer-fas/theme.js"></script>
+    <script src="./assets/plugins/bootstrap/fileinput/locales/zh.js"></script>
+    <script src="./assets/plugins/echart-2.2.0/echarts.js"></script>
+    <script src="./config/global.js"></script>
+    <script src="./config/globalFn.js"></script>
+    <script src="./config/sysConfig.js"></script>
+    <script>
+ 
+var tableInit = function () {
+    var o_table_init = new Object();
+    //初始化Table
+    o_table_init.Init = function () {
+		$.cookie('name','dumplings', { expires: 7 });
+		if($.cookie('name')){
+			$(NAVBAR_BOX).load(GLOBAL_CONFIG.route.navbar.url)
+			$(SIDEBAR_BOX).load(GLOBAL_CONFIG.route.sidebar.url)
+			GLOBAL_FUNCTION.getBankType()
+		}else{ 
+			location.href = GLOBAL_CONFIG.route.login.url
+		}
+    };
+    return o_table_init;
+};
+ 
+ 
+var buttonInit = function () {
+    var o_init = new Object();
+    var postdata = {};
+ 
+    o_init.Init = function () {
+        //初始化页面上面的按钮事件
+    };
+ 
+    return o_init;
+}
+var sidebarHeight = function(){
+	return $('body').height()-$(".navbar-box>div").height()-$("#footer").height()-20;
+}
+
+var NAVBAR_BOX = ".navbar-box";
+var SIDEBAR_BOX = ".sidebar-box";
+var CONTAINER_BOX = ".container-box";
+$(function () {
+    //1.初始化Table
+    var o_table = new tableInit();
+    o_table.Init();
+ 
+    //2.初始化Button的点击事件
+    var o_button_init = new buttonInit();
+    o_button_init.Init();
+	
+	window.onresize = function () {  //注册事件处理函数，动态调整盒子大小
+		$('.sidebar-nav').height(sidebarHeight);
+        $(".sidebar-nav").getNiceScroll().resize();
+    }
+
+});
+	</script>
+  </body>
+</html>

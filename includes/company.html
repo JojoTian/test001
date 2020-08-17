@@ -1,0 +1,411 @@
+<!-- 机构管理-->
+<div class="panel-body">
+				<div class="panel panel-default">
+					<div class="panel-heading">查询条件</div>
+					<div class="panel-body">
+						<form id="formSearch" class="form-horizontal">
+							<div class="form-group" style="margin-top:15px">
+								<label class="control-label col-sm-1" for="txt-search-name">名称</label>
+								<div class="col-sm-3">
+									<input type="text" class="form-control" id="txt-search-name">
+								</div>
+								<div class="col-sm-4" style="text-align:left;">
+									<button type="button" style="margin-left:50px" id="btn-query" class="btn btn-primary">查询</button>
+								</div>
+								<div class="col-sm-4" style="text-align:right;">
+									<button type="button" style="margin-left:50px" data-toggle="modal" data-target="#my-modal-edit" class="btn btn-primary">新增机构</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>   
+	<table id="tb-list" select-id=""></table>
+	<div class="thead-gray" style="padding:10px;">银行账户信息<button type="button" class="btn btn-xs btn-default float-right" data-toggle="modal" data-target="#my-modal-edit-bank" style="border-color: #428bca;color: #428bca;">新增账户</button></div>
+	<table id="tb-list-bank" class="table table-striped table-condensed table-hover">
+		<thead><tr><th style="text-align: center; " data-field="type"><div class="th-inner sortable both">类别</div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="name"><div class="th-inner ">户名</div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="address"><div class="th-inner ">开户行</div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="account"><div class="th-inner ">账号</div><div class="fht-cell"></div></th><th style="text-align: center; " data-field="action"><div class="th-inner ">操作</div><div class="fht-cell"></div></th></tr></thead>
+	</table>
+<!-- 按钮触发模态框 -->
+<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">开始演示模态框</button> -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="my-modal-edit" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="my-modal-edit-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="my-modal-edit-label">新增信息</h4>
+            </div>
+            <div class="modal-body">
+				<form action="" class="form-horizontal">
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="input-id" value="">
+						<label for="input-name" class="col-sm-3 control-label">名称<em style="color: red;">*</em>：</label> 
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="input-name" value="" required>
+						</div>
+					</div>
+					 <div class="form-group">
+						<label for="input-address" class="col-sm-3 control-label">地址<em style="color: red;">*</em>：</label> 
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="input-address" value="" required>
+						</div>
+					</div>
+					 <div class="form-group">
+						<label for="input-principal" class="col-sm-3 control-label">负责人<em style="color: red;">*</em>：</label> 
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="input-principal" value="" required>
+						</div>
+					</div>
+					 <div class="form-group">
+						<label for="input-phone" class="col-sm-3 control-label">联系电话<em style="color: red;">*</em>：</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="input-phone" value="" required number="true">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-describe" class="col-sm-3 control-label" >描述<em style="color: red;"></em>：</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" name="input-describe" value=""></textarea>
+						</div>
+					</div> 
+				</form>
+			</div>
+            <div class="modal-footer">
+				<div class="error-tips" style=""></div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="save-data">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="my-modal-edit-bank" role="dialog"  data-backdrop="static" aria-labelledby="my-modal-edit-bank-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="my-modal-edit-bank-label">新增信息</h4>
+            </div>
+            <div class="modal-body">
+				<form action="" class="form-horizontal">
+					 <div class="form-group">
+						<label for="input-type" class="col-sm-3 control-label">类别<em style="color: red;">*</em>：</label> 
+						<div class="col-sm-8">
+							<select class="form-control" name="input-type" value="" ></select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input-name" class="col-sm-3 control-label">户名<em style="color: red;">*</em>：</label> 
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="input-name" value="" required>
+						</div>
+					</div>
+					 <div class="form-group">
+						<label for="input-address" class="col-sm-3 control-label">开户行<em style="color: red;">*</em>：</label> 
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="input-address" value="" required>
+						</div>
+					</div>
+					 <div class="form-group">
+						<label for="input-account" class="col-sm-3 control-label">账号<em style="color: red;">*</em>：</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="input-account" value="" required creditcard="true">
+						</div>
+					</div>
+				</form>
+				</div>
+				<div class="modal-footer">
+					<div class="error-tips" style=""></div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="save-data-bank">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</div>
+<script>
+	$("form").each(function(index,ele){
+		$(ele).validate({
+			onfocusout: function(element){
+				$(element).valid();
+			}
+		})
+	});
+	var tab_config = $.extend(true, {}, GLOBAL_CONFIG.defaultTable);
+	tab_config.url = GLOBAL_CONFIG.apiFull.companyList;
+	// tab_config.toolbar = "#";
+	tab_config.queryParams = function (params) {
+			var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+				limit: params.limit,   //页面大小
+				offset: params.offset,  //页码
+				name: $("#txt-search-name").val(),
+			};
+			return temp;
+		}
+	tab_config.onClickRow = function(row,$element){
+		if(!$($element).hasClass('selected')){
+			$($element).siblings().removeClass('selected');
+			$($element).addClass('selected');
+			initBankTable(row.id)
+		}else{
+			$($element).removeClass('selected');
+		}
+	}
+	tab_config.columns = [
+		{
+			field: 'id',
+			sortable: true,// 排序
+			title: 'ID',
+			align: 'center',
+		}, {
+			field: 'name',
+			title: '机构名称',
+			align: 'center'
+		}, {
+			field: 'address',
+			title: '地址',
+			align: 'center'
+		}, {
+			field: 'principal',
+			title: '负责人',
+			align: 'center'
+		}, {
+			field: 'phone',
+			title: '联系电话',
+			align: 'center'
+		}, {
+			field: 'describe',
+			title: '简介',
+			align: 'center'
+		}, {
+			field: 'createtime',
+			title: '创建时间',
+			align: 'center'
+		}, {
+			field:'action',
+			title:'操作',
+			align: 'center',
+			formatter:function(value,row,index){
+					return '<a href="javascript:;" onclick="editData(\''+ index + '\')">修改</a> '+
+							'<a href="javascript:;" onclick="deleteData(\''+ row.id + '\')">删除</a> ';
+				  }
+		}];
+	$('#tb-list').bootstrapTable(tab_config);
+	// 查询
+	$('#btn-query').on('click',function () {
+		var pageSize=$('#tb-list').bootstrapTable('getOptions').pageSize;//通过表的#id 可以得到每页多少条
+		var pageNumber=$('#tb-list').bootstrapTable('getOptions').pageNumber;//通过表的#id 可以得到当前第几页
+		
+		$.ajax({
+			type:"POST",
+			url:tab_config.url,
+			dataType:'json',
+			data:{
+				offset: pageNumber,      //页码
+				limit: pageSize,        //每页条数
+				name: $("#txt-search-name").val() || null,
+			},
+			success:function (res) {
+				var data = res;
+				if (data.total === 0) {
+					data.total = 1;
+				}
+				$('#tb-list').bootstrapTable('load', data);
+			}
+		})
+    });
+	// 新增初始化
+	$('button[data-target="#my-modal-edit"]').on('click',function () {
+		$('#my-modal-edit-label').text("新增信息")
+		$('#my-modal-edit input[name="input-id"]').val("")
+		$('#my-modal-edit input[name="input-name"]').val("")
+		$('#my-modal-edit input[name="input-address"]').val("")
+		$('#my-modal-edit input[name="input-principal"]').val("")
+		$('#my-modal-edit input[name="input-phone"]').val("")
+		$('#my-modal-edit textarea[name="input-describe"]').val("")
+		$('#my-modal-edit textarea[name="input-describe"]').text("")
+		$("#my-modal-edit label.error").each(function(index,ele){$(ele).html("").css("display","none")})
+    });
+	// 编辑初始化
+	function editData(index){
+		var data = $('#tb-list').bootstrapTable('getData')[index]
+		$('#my-modal-edit-label').text("修改信息")
+		$('#my-modal-edit input[name="input-id"]').val(data.id)
+		$('#my-modal-edit input[name="input-name"]').val(data.name)
+		$('#my-modal-edit input[name="input-address"]').val(data.address)
+		$('#my-modal-edit input[name="input-principal"]').val(data.principal)
+		$('#my-modal-edit input[name="input-phone"]').val(data.phone)
+		$('#my-modal-edit textarea[name="input-describe"]').val(data.describe)
+		$('#my-modal-edit textarea[name="input-describe"]').text(data.describe)
+		$("#my-modal-edit label.error").each(function(index,ele){$(ele).html("").css("display","none")})
+		$('#my-modal-edit').modal("show")
+	}
+	$('#save-data').on('click',function () {
+		var valid = true;
+		$("form").eq(1).validate().form()
+		$("#my-modal-edit label.error").each(function(index,ele){if($(ele).html())valid=false;})
+		if(valid){
+			$.ajax({
+				type:"POST",
+				url:GLOBAL_CONFIG.apiFull.companyEdit,
+				dataType:'json',
+				data:GLOBAL_FUNCTION.formatFormData("#my-modal-edit form"),
+				success:function (res) {
+					var data = res;
+					if (200==data.code) {
+						$('#my-modal-edit').modal("hide")
+						GLOBAL_FUNCTION.showTips("success","提交成功！");
+						$('#tb-list').bootstrapTable('refresh');
+					}else{
+						GLOBAL_FUNCTION.showTips("danger","提交失败！")
+					}
+				}
+			})
+		}
+	});
+	
+	function deleteData(id){
+		var id = parseInt(id);
+		if(id){
+			GLOBAL_FUNCTION.showConfirm("确定要删除选中数据吗？",function(){
+				$.ajax({
+					type:"POST",
+					url:GLOBAL_CONFIG.apiFull.companyDelete,
+					dataType:'json',
+					data:{
+						id: id,      //页码
+					},
+					success:function (res) {
+						var data = res;
+						if (200==data.code) {
+							GLOBAL_FUNCTION.showTips("success","删除成功！");
+							$('#tb-list').bootstrapTable('refresh');
+						}else{
+							GLOBAL_FUNCTION.showTips("danger","删除失败！")
+						}
+					}
+				})
+			})
+		}
+	}
+	// 账户信息
+	var tab_config_bank = $.extend(true, {}, GLOBAL_CONFIG.defaultTable);
+	tab_config_bank.url = GLOBAL_CONFIG.apiFull.bankList;
+	tab_config_bank.theadClasses = "";
+	tab_config_bank.columns = [
+		{
+			field: 'type',
+			sortable: true,// 排序
+			title: '类别',
+			align: 'center',
+		}, {
+			field: 'name',
+			title: '户名',
+			align: 'center'
+		}, {
+			field: 'address',
+			title: '开户行',
+			align: 'center'
+		}, {
+			field: 'account',
+			title: '账号',
+			align: 'center'
+		}, {
+			field:'action',
+			title:'操作',
+			align: 'center',
+			formatter:function(value,row,index){
+					return '<a href="javascript:;" onclick="editDataBank(\''+ index + '\')">修改</a> '+
+							'<a href="javascript:;" onclick="deleteDataBank(\''+ row.account + '\')">删除</a> ';
+				  }
+		}];
+	function initBankTable(company_id){
+		var current_company_id = parseInt($('#tb-list').prop("select-id")||0)
+		company_id = parseInt(company_id||0)
+		if(current_company_id==company_id)return;
+		tab_config_bank.queryParams = function (params) {
+			var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+				limit: params.limit,   //页面大小
+				offset: params.offset,  //页码
+				id: company_id,
+			};
+			return temp;
+		}
+		$('#tb-list').prop("select-id",company_id)
+		$('#tb-list-bank').bootstrapTable("destroy");
+		$('#tb-list-bank').bootstrapTable(tab_config_bank);
+	}
+	// 新增初始化
+	$('button[data-target="#my-modal-edit-bank"]').on('click',function () {
+		if(!$('#tb-list').prop("select-id")){
+			GLOBAL_FUNCTION.showTips("info","请先选择机构！")
+			return false;
+		}
+		$('#my-modal-edit-bank-label').text("新增信息")
+		$('#my-modal-edit-bank input[name="input-name"]').val("")
+		$('#my-modal-edit-bank input[name="input-address"]').val("")
+		$('#my-modal-edit-bank select[name="input-type"]').html(GLOBAL_FUNCTION.getOptionForBankType);
+		$('#my-modal-edit-bank select[name="input-type"]').val(SYS_CONFIG.bankType[0].id);
+		$('#my-modal-edit-bank input[name="input-account"]').val("")
+		$("#my-modal-edit-bank label.error").each(function(index,ele){$(ele).html("").css("display","none")})
+    });
+	// 编辑初始化
+	function editDataBank(index){
+		var data = $('#tb-list-bank').bootstrapTable('getData')[index]
+		$('#my-modal-edit-bank-label').text("修改信息")
+		$('#my-modal-edit-bank input[name="input-name"]').val(data.name)
+		$('#my-modal-edit-bank input[name="input-address"]').val(data.address)
+		$('#my-modal-edit-bank select[name="input-type"]').html(GLOBAL_FUNCTION.getOptionForBankType);
+		$('#my-modal-edit-bank select[name="input-type"]').val(data.account);
+		$('#my-modal-edit-bank input[name="input-account"]').val(data.account)
+		$("#my-modal-edit-bank label.error").each(function(index,ele){$(ele).html("").css("display","none")})
+		$('#my-modal-edit-bank').modal("show")
+	}
+	$('#save-data-bank').on('click',function () {
+		var valid = true;
+		$("form").eq(2).validate().form()
+		$("#my-modal-edit-bank label.error").each(function(index,ele){if($(ele).html())valid=false;})
+		if(valid){
+			$.ajax({
+				type:"POST",
+				url:GLOBAL_CONFIG.apiFull.bankEdit,
+				dataType:'json',
+				data:GLOBAL_FUNCTION.formatFormData("#my-modal-edit-bank form"),
+				success:function (res) {
+					var data = res;
+					if (200==data.code) {
+						$('#my-modal-edit-bank').modal("hide")
+						GLOBAL_FUNCTION.showTips("success","提交成功！");
+						$('#tb-list-bank').bootstrapTable('refresh');
+					}else{
+						GLOBAL_FUNCTION.showTips("danger","提交失败！")
+					}
+				}
+			})
+		}
+	});
+	function deleteDataBank(account){
+		var account = parseInt(account);
+		if(account){
+			GLOBAL_FUNCTION.showConfirm("确定要删除选中数据吗？",function(){
+				$.ajax({
+					type:"POST",
+					url:GLOBAL_CONFIG.apiFull.bankDelete,
+					dataType:'json',
+					data:{
+						account: account,      //页码
+					},
+					success:function (res) {
+						var data = res;
+						if (200==data.code) {
+							GLOBAL_FUNCTION.showTips("success","删除成功！");
+							$('#tb-list-bank').bootstrapTable('refresh');
+						}else{
+							GLOBAL_FUNCTION.showTips("danger","删除失败！")
+						}
+					}
+				})
+			})
+		}
+	}
+	
+</script>

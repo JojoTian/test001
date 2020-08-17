@@ -1,0 +1,67 @@
+html,body{
+    height: 100%; 
+}
+.left{
+    float:left;
+}
+.right{
+    float:right
+}
+.text-right{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
+.container-fluid{
+    display: flex; 
+    /* align-items: center; 360浏览器  ie8环境  不兼容  用24行padding-top:11%;   */
+    /* justify-content:center;   360浏览器  ie8环境  不兼容  用30行margin：0 auto;*/   
+    background: url('../img/login/background-img7.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    padding-top:11%;   
+    width: 100%;
+    height: 100%;    
+}
+.container-fluid .form-horizontal { 
+    margin:0 auto;
+    width: 500px; 
+} 
+.container-fluid  .form-signin-heading{ 
+    background-color: #64A1F0;
+    background-color: rgba(100, 161, 240, 0.6);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    /* opacity: 0.3;
+    filter:Alpha(opacity=3); */ 
+    margin-top:0;
+    margin-bottom:0;
+    padding: 5px 20px 5px;   
+    text-align: center;
+}
+.container-fluid  .login-con{ 
+    background-color: #2A58D8;
+    background-color: rgba(42, 88, 216, 0.5);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; 
+    padding: 20px 20px 10px 20px;
+}
+.container-fluid  .login-con .form-group{
+    padding-right:20px;
+}
+.container-fluid  .artforget{
+    margin-top: 10px;
+    overflow: hidden;
+}
+.container-fluid  .artforget div:first-child{
+    color: red;
+    display: none;
+}
+.container-fluid  .artforget div:last-child{
+    color: #bbb;
+}
+.container-fluid .checkbox{
+    display: inline-block;
+}

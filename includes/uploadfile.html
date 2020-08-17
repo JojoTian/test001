@@ -1,0 +1,38 @@
+
+			<div class="panel-body" style="padding-bottom:0px;">
+				<div class="panel panel-default">
+					<div class="panel-heading">查询</div>
+					<div class="panel-body" id="err-info">
+					</div>
+				</div>
+				<form id="form" method="post" enctype="multipart/form-data">
+					<input  id="input-id" type="file" class="file" multiple />
+				</form>
+			</div>
+    <script type="text/javascript">
+	var fileinput_config = GLOBAL_CONFIG.defaultUpload
+	fileinput_config.uploadUrl = GLOBAL_CONFIG.apiFull.test, //上传的地址
+	fileinput_config.deleteUrl = GLOBAL_CONFIG.apiFull.login, //删除的地址
+	fileinput_config.allowedFileExtensions = [];//接收的文件后缀
+	fileinput_config.uploadExtraData = {"id": 1, "fileName":'test.jpg'}; //额外提交参数
+	fileinput_config.elErrorContainer = '#err-info'; //错误提示区
+	//fileinput_config.maxFileCount = 2; //表示允许同时上传的最大文件个数
+	fileinput_config.initialPreviewAsData = true; //已经上传的数据显示
+	fileinput_config.initialPreview = [
+                "http://lorempixel.com/1920/1080/nature/1",
+                "http://lorempixel.com/1920/1080/nature/2",
+                "http://lorempixel.com/1920/1080/nature/3"
+            ]; //预览地址
+	fileinput_config.initialPreviewConfig = [
+                {caption: "nature-1.jpg", size: 329892, width: "120px", url: GLOBAL_CONFIG.apiFull.test, key: 1},
+                {caption: "nature-2.jpg", size: 872378, width: "120px", url: GLOBAL_CONFIG.apiFull.test, key: 2},
+                {caption: "nature-3.jpg", size: 632762, width: "120px", url: GLOBAL_CONFIG.apiFull.test, key: 3}
+            ]; //操作配置
+	
+	$("#input-id").fileinput(fileinput_config).on("fileuploaded", function(event, data, previewId, index) {
+			console.log('文件上传成功！'+data.response.total +"="+ previewId +"="+ index);
+		}).on('filedeleted', function(event, key) {
+           console.log('Key = ' + key);
+         });
+		 
+    </script>

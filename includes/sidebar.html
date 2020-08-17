@@ -1,0 +1,47 @@
+
+<div class="sidebar-nav">
+<!-- <ul class="nav">
+  <li>Sidebar</li>
+  <li class="active"><a href="#">Link</a></li>
+  <li><a href="#">Link</a></li>
+  <li><a href="#">Link</a></li>
+  <li>Sidebar</li>
+  <li><a href="#">Link</a></li>
+  <li><a href="#">Link</a></li>
+  <li><a href="#">Link</a></li>
+  <li>Sidebar</li>
+  <li><a href="#">Link</a></li>
+  <li><a href="#">Link</a></li>
+</ul> -->
+</div><!--/.well -->
+<script>
+$(function(){
+  $('.sidebar-nav').height(sidebarHeight)
+  $('.sidebar-nav').niceScroll(GLOBAL_CONFIG.niceScroll);
+  $('.sidebar-nav').treeview({
+    showBorder:false,backColor:"#f9f9f9",
+    expandIcon: 'glyphicon glyphicon-chevron-right',
+    collapseIcon: 'glyphicon glyphicon-chevron-down',
+    data: SYS_CONFIG.menu
+  }).on('nodeSelected', function(event, data) {console.log(data)
+                      if(data.selectable){ 
+                        // 记录当前页的hash值
+                        // window.location.hash = data.href;
+                        $(CONTAINER_BOX).load(data.target)
+                        history.replaceState(null,document.title,data.href+".html")
+                      }
+                  });
+  var current_page = location.pathname.replace(/\/(.*?).html/,"$1");
+  
+  if("/"==current_page || "index"==current_page){
+    $('.sidebar-nav li').eq(0).click()
+  }else{
+    $('.sidebar-nav li').each(function(index){
+      var node = $('.sidebar-nav').treeview('getNode', index);
+      if(current_page!=location.pathname){
+        if(current_page==node.href)$('.sidebar-nav li').eq(index).click();
+      }
+    })
+  }
+})
+</script>
